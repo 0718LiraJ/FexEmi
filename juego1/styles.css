@@ -23,30 +23,20 @@ body {
 
 #game {
    display: flex;
-   /* Cambiar a flexbox */
    flex-direction: row;
-   /* Alinear en filas */
    flex-wrap: wrap;
-   /* Permitir que las cartas se envuelvan a la siguiente fila */
    justify-content: center;
-   /* Centrar las cartas en la fila */
    gap: 1rem;
-   /* Espacio entre las cartas */
    width: 100%;
-   max-width: auto;
-   /* Controlar el ancho máximo del área de juego */
 }
 
 #wrapper {
    min-height: calc(100vh - 5rem);
-   /* Ajustamos para que no ocupe más del espacio disponible */
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: flex-start;
-   /* Comenzar desde arriba */
    padding: 1rem;
-   /* Agregar algo de espacio alrededor */
 }
 
 #stats {
@@ -57,7 +47,6 @@ body {
    font-size: 2rem;
    box-sizing: border-box;
 }
-
 
 .card {
    width: 100px;
@@ -107,15 +96,12 @@ body {
    width: 100vw;
    height: 100vh;
    background: linear-gradient(90deg, #174287, #ffe359, #001e4e);
-   /* Mismo fondo que el body */
    background-size: 300% 300%;
    animation: cambiaColor 5s ease infinite;
-   /* Añadir animación del fondo */
    color: white;
    z-index: 10;
    text-align: center;
 }
-
 
 #endgameForm h1 {
    font-size: 3rem;
@@ -139,14 +125,10 @@ body {
 
 #finalScore {
    font-size: 36px;
-   /* Tamaño de letra más grande */
    font-weight: bold;
-   /* Negrita para mayor énfasis */
    color: #ffffff;
-   /* Color azul claro */
 }
 
-/* Estilo del botón con ícono de casa */
 .home-button {
    position: absolute;
    top: 20px;
@@ -160,19 +142,17 @@ body {
    display: flex;
    align-items: center;
    justify-content: center;
-   /* Centrar el ícono dentro del botón */
    transition: background-color 0.3s;
    z-index: 100;
    font-size: 2vw;
-   /* Asegura que el ícono y el texto se escalen */
 }
 
 .home-button i {
    font-size: 2vw;
-   /* Tamaño del ícono ajustado al tamaño del botón */
    margin-right: 10px;
 }
 
 .home-button:hover {
    background-color: #000000;
 }
+

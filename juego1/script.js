@@ -1,4 +1,4 @@
-const totalCards = 18;
+const totalCards = 4;
 const availableCards = ['images/sist.png', 'images/amb.png', 'images/civ.png', 'images/etn.png', 'images/ind.png', 'images/com.png', 'images/mec.png', 'images/pet.png', 'images/agro.png'];
 let cards = [];
 let selectedCards = [];
@@ -7,65 +7,10 @@ let currentMove = 0;
 let currentAttempts = 0;
 
 let cardTemplate = '<div class="card"><div class="back"></div><div class="face"></div></div>';
-
-function activate(e) {
-   if (currentMove < 2) {
-
-      if ((!selectedCards[0] || selectedCards[0] !== e.target) && !e.target.classList.contains('active')) {
-         e.target.classList.add('active');
-         selectedCards.push(e.target);
-
-         if (++currentMove == 2) {
-
-            if (selectedCards[0].querySelectorAll('.face')[0].innerHTML == selectedCards[1].querySelectorAll('.face')[0].innerHTML) {
-               selectedCards = [];
-               currentMove = 0;
-            }
-            else {
-               setTimeout(() => {
-                  selectedCards[0].classList.remove('active');
-                  selectedCards[1].classList.remove('active');
-                  selectedCards = [];
-                  currentMove = 0;
-               }, 600);
-            }
-         }
-      }
-   }
-}
-
-function randomValue() {
-   let rnd = Math.floor(Math.random() * totalCards * 0.5);
-   let values = valuesUsed.filter(value => value === rnd);
-   if (values.length < 2) {
-      valuesUsed.push(rnd);
-   }
-   else {
-      randomValue();
-   }
-}
-
-function getFaceValue(value) {
-   let rtn = value;
-   if (value < availableCards.length) {
-      rtn = `<img src="${availableCards[value]}" alt="Carta" style="width:100%; height:auto;">`;
-   }
-   return rtn;
-}
-
-for (let i = 0; i < totalCards; i++) {
-   let div = document.createElement('div');
-   div.innerHTML = cardTemplate;
-   cards.push(div);
-   document.querySelector('#game').append(cards[i]);
-   randomValue();
-   cards[i].querySelectorAll('.face')[0].innerHTML = getFaceValue(valuesUsed[i]);
-   cards[i].querySelectorAll('.card')[0].addEventListener('click', activate);
-}
+let gameStarted = false; // Controlar si el juego ha comenzado
 
 let remainingTime = 90; // Tiempo inicial en segundos (1 minuto y 30 segundos)
 let timerInterval;
-let timerStarted = false; // Bandera para controlar el inicio del cronómetro
 let score = 0; // Variable para almacenar el puntaje
 let matchedPairs = 0; // Contador para las parejas de cartas que coinciden
 const totalPairs = totalCards / 2; // Número total de parejas a coincidir
@@ -104,13 +49,67 @@ function endGame() {
    document.querySelector('#finalScore').innerHTML = `Puntaje: ${score}`; // Mostrar el puntaje final
 }
 
-// Modifica la función 'activate' para manejar el fin de juego cuando se coinciden todas las cartas
-function activate(e) {
-   // Iniciar el temporizador solo si no ha empezado
-   if (!timerStarted) {
-      startTimer();
-      timerStarted = true; // Marcar el cronómetro como iniciado
+// Mostrar todas las cartas durante 2 segundos después de un retraso inicial
+function revealAllCards() {
+   setTimeout(() => {
+      const allCards = document.querySelectorAll('.card');
+      allCards.forEach(card => {
+         card.classList.add('active'); // Mostrar todas las cartas
+      });
+
+      // Ocultar las cartas después de 2 segundos
+      setTimeout(() => {
+         allCards.forEach(card => {
+            card.classList.remove('active'); // Ocultar todas las cartas
+         });
+         gameStarted = true; // Marcar que el juego puede comenzar ahora
+      }, 2000); // Esperar 2 segundos
+   }, 1000); // Esperar 2 segundos antes de revelar las cartas
+}
+
+// Función para generar las cartas mezcladas
+function generateCards() {
+   cards = []; // Reiniciar el array de cartas
+   valuesUsed = []; // Reiniciar los valores usados para evitar duplicados
+   document.querySelector('#game').innerHTML = ''; // Limpiar el área de juego
+
+   for (let i = 0; i < totalCards; i++) {
+      let div = document.createElement('div');
+      div.innerHTML = cardTemplate;
+      cards.push(div);
+      document.querySelector('#game').append(cards[i]);
+      randomValue();
+      cards[i].querySelectorAll('.face')[0].innerHTML = getFaceValue(valuesUsed[i]);
+      cards[i].querySelectorAll('.card')[0].addEventListener('click', activate);
    }
+
+   // Revelar todas las cartas al inicio después de un retraso
+   revealAllCards();
+}
+
+// Función para obtener un valor aleatorio para las cartas
+function randomValue() {
+   let rnd = Math.floor(Math.random() * totalCards * 0.5);
+   let values = valuesUsed.filter(value => value === rnd);
+   if (values.length < 2) {
+      valuesUsed.push(rnd);
+   } else {
+      randomValue();
+   }
+}
+
+// Función para obtener el contenido de la cara de la carta
+function getFaceValue(value) {
+   let rtn = value;
+   if (value < availableCards.length) {
+      rtn = `<img src="${availableCards[value]}" alt="Carta" style="width:100%; height:auto;">`;
+   }
+   return rtn;
+}
+
+// Función para manejar la activación de cartas
+function activate(e) {
+   if (!gameStarted) return; // No permitir activar cartas hasta que el juego haya comenzado
 
    if (currentMove < 2) {
       if ((!selectedCards[0] || selectedCards[0] !== e.target) && !e.target.classList.contains('active')) {
@@ -144,48 +143,30 @@ function activate(e) {
 
 // Función para reiniciar el juego
 function resetGame() {
-   remainingTime = 90; // Reiniciar el tiempo a 1:30
+   gameStarted = false; // Reiniciar el estado del juego
+   currentMove = 0;
+   selectedCards = [];
    score = 0; // Reiniciar el puntaje
    matchedPairs = 0; // Reiniciar el contador de parejas
-   timerStarted = false; // El cronómetro no ha comenzado
-   selectedCards = []; // Reiniciar las cartas seleccionadas
-   currentMove = 0; // Reiniciar los movimientos
 
-   // Volver a mostrar el área del juego y el cronómetro
-   document.querySelector('#game').style.display = 'flex';
-   document.querySelector('#stats').style.display = 'block';
-   document.querySelector('#endgameForm').style.display = 'none'; // Ocultar el formulario de fin de juego
-
-   // Reiniciar el contenido del puntaje y el cronómetro en la pantalla
    document.querySelector('#score').innerHTML = `Puntaje: ${score}`;
    document.querySelector('#time').innerHTML = `Tiempo restante: 1:30`;
+   document.querySelector('#endgameForm').style.display = 'none';
+   document.querySelector('#game').style.display = 'flex';
+   document.querySelector('#stats').style.display = 'block';
 
-   // Remover las cartas actuales y generar nuevas cartas (mezcladas)
-   document.querySelector('#game').innerHTML = ''; // Limpiar el área de juego
-   valuesUsed = []; // Reiniciar los valores usados para las cartas
-   generateCards(); // Volver a generar las cartas desde cero
+   // Volver a generar las cartas
+   generateCards();
 
-   // Reiniciar el temporizador (solo cuando la primera carta se gire)
-   clearInterval(timerInterval); // Detener cualquier temporizador anterior
+   // Detener cualquier temporizador activo
+   clearInterval(timerInterval);
+   remainingTime = 90; // Reiniciar el tiempo
 }
 
-// Función para generar las cartas mezcladas
-function generateCards() {
-   cards = []; // Reiniciar el array de cartas
-   for (let i = 0; i < totalCards; i++) {
-      let div = document.createElement('div');
-      div.innerHTML = cardTemplate;
-      cards.push(div);
-      document.querySelector('#game').append(cards[i]);
-      randomValue();
-      cards[i].querySelectorAll('.face')[0].innerHTML = getFaceValue(valuesUsed[i]);
-      cards[i].querySelectorAll('.card')[0].addEventListener('click', activate);
-   }
-}
-
-// Manejar el clic en el botón de "Volver a jugar"
+// Función para iniciar el juego cuando se entra desde el menú
 window.onload = () => {
-   document.querySelector('#restartButton').addEventListener('click', () => {
-      resetGame(); // Llama a resetGame en lugar de recargar la página
-   });
+   document.querySelector('#restartButton').addEventListener('click', resetGame);
+
+   // Generar las cartas y revelarlas cuando se carga el juego desde el menú
+   generateCards();
 };
