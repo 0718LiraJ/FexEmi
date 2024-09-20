@@ -6,8 +6,14 @@
     <title>Juegos EMI</title>
     <!-- Agregamos un parámetro único con ?v=[marca de tiempo] para evitar caché -->
     <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
+    <!-- Enlaces para Pannellum -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
 </head>
 <body>
+
+    <!-- Panorama 360 grados al fondo -->
+    <div id="panorama"></div>
 
     <div class="split left">
         <!-- Parte izquierda con imagen de fondo -->
@@ -20,5 +26,8 @@
         </div>
     </div>
 
+    <script src="script.js"></script>
+
+    
 </body>
 </html>
