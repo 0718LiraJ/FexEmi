@@ -31,7 +31,7 @@ body {
 /* Parte izquierda con imagen de fondo */
 .left {
     width: 70%; 
-    background: rgba(20, 59, 131, 0.5); /* Fondo semitransparente */
+    background: #17428792; /* Fondo semitransparente */
     background-image: url('images/emi2.png'); /* Imagen de fondo a la izquierda */
     background-size: cover;
     background-position: center;
@@ -40,7 +40,7 @@ body {
 /* Parte derecha con fondo de color */
 .right {
     width: 30%; 
-    background-color: rgba(20, 59, 131, 0.5); /* Fondo semitransparente */
+    background-color: #17428792; /* Fondo semitransparente */
 }
 
 /* Contenedor de los botones */

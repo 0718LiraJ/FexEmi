@@ -8,6 +8,7 @@ let currentAttempts = 0;
 
 let cardTemplate = '<div class="card"><div class="back"></div><div class="face"></div></div>';
 let gameStarted = false; // Controlar si el juego ha comenzado
+let timerStarted = false; // Nueva variable para controlar si el temporizador ha comenzado
 
 let remainingTime = 90; // Tiempo inicial en segundos (1 minuto y 30 segundos)
 let timerInterval;
@@ -111,6 +112,12 @@ function getFaceValue(value) {
 function activate(e) {
    if (!gameStarted) return; // No permitir activar cartas hasta que el juego haya comenzado
 
+   // Iniciar el temporizador en el primer volteo de una carta
+   if (!timerStarted) {
+      startTimer();
+      timerStarted = true; // Evitar que el temporizador se inicie más de una vez
+   }
+
    if (currentMove < 2) {
       if ((!selectedCards[0] || selectedCards[0] !== e.target) && !e.target.classList.contains('active')) {
          e.target.classList.add('active');
@@ -144,6 +151,7 @@ function activate(e) {
 // Función para reiniciar el juego
 function resetGame() {
    gameStarted = false; // Reiniciar el estado del juego
+   timerStarted = false; // Reiniciar el estado del temporizador
    currentMove = 0;
    selectedCards = [];
    score = 0; // Reiniciar el puntaje
