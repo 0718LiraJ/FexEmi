@@ -149,22 +149,28 @@ body {
 /* Estilo del botón con ícono de casa */
 .home-button {
    position: absolute;
-   top: 20px; /* Ajustar la distancia desde la parte superior */
-   right: 20px; /* Ajustar la distancia desde la parte derecha */
-   padding: 15px 30px;
+   top: 20px;
+   right: 20px;
+   padding: 2vw 3vw;
    background-color: #143b83;
    border: none;
-   color: white;
+   color: yellow;
    cursor: pointer;
    border-radius: 10px;
    display: flex;
    align-items: center;
+   justify-content: center;
+   /* Centrar el ícono dentro del botón */
    transition: background-color 0.3s;
-   z-index: 100; /* Asegurar que esté por encima de otros elementos */
+   z-index: 100;
+   font-size: 2vw;
+   /* Asegura que el ícono y el texto se escalen */
 }
 
 .home-button i {
-   margin-right: 10px; /* Espacio entre el ícono y el texto */
+   font-size: 2vw;
+   /* Tamaño del ícono ajustado al tamaño del botón */
+   margin-right: 10px;
 }
 
 .home-button:hover {
