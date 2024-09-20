@@ -1,4 +1,4 @@
-const totalCards = 4;
+const totalCards = 18;
 const availableCards = ['images/sist.png', 'images/amb.png', 'images/civ.png', 'images/etn.png', 'images/ind.png', 'images/com.png', 'images/mec.png', 'images/pet.png', 'images/agro.png'];
 let cards = [];
 let selectedCards = [];
