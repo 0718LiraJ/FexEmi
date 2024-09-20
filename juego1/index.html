@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="styles.css?v=<?php echo time(); ?>">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Enlace correcto de Font Awesome -->
+</head>
+
+<body>
+
+   <button class="home-button" onclick="window.history.back()">
+      <i class="fas fa-home"></i>
+   </button>
+   
+   <div id="stats">
+      <img src="images/logo.png" width="250" height="auto">
+      <div id="time">Tiempo restante: 1:30</div>
+      <div id="score">Puntaje: 0</div>
+   </div>
+
+   <div id="wrapper">
+      <div id="game"></div>
+   </div>
+
+   <script src="script.js?v=<?php echo time(); ?>"></script>
+
+   <div id="endgameForm" style="display: none;">
+      <h1>Fin del juego</h1>
+      <div id="finalScore">Puntaje: 0</div>
+      <button id="restartButton">Volver a jugar</button>
+   </div>
+
+</body>
+
+</html>

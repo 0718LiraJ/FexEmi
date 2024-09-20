@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quizz</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="menu">
+        <img src="img/emi.png" alt="EMI logo" class="centered-img"> <!-- Imagen centrada -->
+        <h1>Bienvenido al Quizz</h1>
+        <button id="startBtn">Iniciar Quizz</button>
+    </div>
+
+    <div id="quizz-container" class="hidden">
+        <img src="img/emi.png" alt="EMI logo" class="centered-img top-img">
+        <div id="question-box">
+            <p id="question">Pregunta aquí</p>
+        </div>
+    
+        <div id="answers">
+            <button class="answer-button" id="answerA">A</button>
+            <button class="answer-button" id="answerB">B</button>
+            <button class="answer-button" id="answerC">C</button>
+            <button class="answer-button" id="answerD">D</button>
+        </div>
+    
+        <!-- Barra de progreso -->
+        <div id="progress-bar-container">
+            <div id="progress-bar"></div>
+        </div>
+    
+        <div id="timer-box">
+            <p>Tiempo restante: <span id="time">12</span> segundos</p>
+        </div>
+    </div>
+
+    <div id="result" class="hidden">
+        <img src="img/emi.png" alt="EMI logo" class="centered-img top-img">
+        <div id="rank-images" class="hidden">
+            <img id="left-rank-image" class="side-image" alt="Rango Ejercito">
+            <img id="right-rank-image" class="side-image" alt="Rango Aérea">
+        </div>
+    
+        <div id="rank-container" class="rank hidden"></div>
+        <h2 id="final-score"></h2>
+        <p id="congratulations"></p>
+        
+        <!-- Barra de progreso en el resultado -->
+        <div id="result-progress-bar-container">
+            <div id="result-progress-bar"></div>
+        </div>
+        
+        <button id="restartBtn">Reiniciar Quizz</button>
+    </div>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

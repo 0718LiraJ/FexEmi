@@ -1,0 +1,172 @@
+@keyframes cambiaColor {
+   0% {
+      background-position: 0% 50%;
+   }
+
+   50% {
+      background-position: 100% 50%;
+   }
+
+   100% {
+      background-position: 0% 50%;
+   }
+}
+
+body {
+   margin: 0;
+   overflow: hidden;
+   background: linear-gradient(90deg, #174287, #ffe359, #174287);
+   background-size: 300% 300%;
+   animation: cambiaColor 5s ease infinite;
+}
+
+
+#game {
+   display: flex;
+   /* Cambiar a flexbox */
+   flex-direction: row;
+   /* Alinear en filas */
+   flex-wrap: wrap;
+   /* Permitir que las cartas se envuelvan a la siguiente fila */
+   justify-content: center;
+   /* Centrar las cartas en la fila */
+   gap: 1rem;
+   /* Espacio entre las cartas */
+   width: 100%;
+   max-width: auto;
+   /* Controlar el ancho máximo del área de juego */
+}
+
+#wrapper {
+   min-height: calc(100vh - 5rem);
+   /* Ajustamos para que no ocupe más del espacio disponible */
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: flex-start;
+   /* Comenzar desde arriba */
+   padding: 1rem;
+   /* Agregar algo de espacio alrededor */
+}
+
+#stats {
+   color: white;
+   padding: 1rem;
+   text-align: center;
+   width: 100%;
+   font-size: 2rem;
+   box-sizing: border-box;
+}
+
+
+.card {
+   width: 100px;
+   height: 140px;
+   margin: 1rem;
+   position: relative;
+   transition: transform 0.5s;
+   transform-style: preserve-3d;
+}
+
+.card.active {
+   transform: rotateY(180deg);
+}
+
+.card div {
+   width: 100%;
+   height: 100%;
+   border-radius: 1rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: absolute;
+   backface-visibility: hidden;
+   pointer-events: none;
+}
+
+.card .face {
+   background: #ffffff;
+   transform: rotateY(180deg);
+   color: black;
+   font-size: 6rem;
+}
+
+.card .back {
+   border: 3px solid #D9D9D9;
+   background: url(images/emi2.png) center / contain no-repeat #174287;
+}
+
+#endgameForm {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100vw;
+   height: 100vh;
+   background: linear-gradient(90deg, #174287, #ffe359, #001e4e);
+   /* Mismo fondo que el body */
+   background-size: 300% 300%;
+   animation: cambiaColor 5s ease infinite;
+   /* Añadir animación del fondo */
+   color: white;
+   z-index: 10;
+   text-align: center;
+}
+
+
+#endgameForm h1 {
+   font-size: 3rem;
+   margin-bottom: 1rem;
+}
+
+#endgameForm #restartButton {
+   padding: 1rem 2rem;
+   font-size: 1.5rem;
+   background-color: #143b83;
+   border: none;
+   border-radius: 5px;
+   color: #ffe359;
+   cursor: pointer;
+   margin-top: 1rem;
+}
+
+#endgameForm #restartButton:hover {
+   background-color: #04a1d8;
+}
+
+#finalScore {
+   font-size: 36px;
+   /* Tamaño de letra más grande */
+   font-weight: bold;
+   /* Negrita para mayor énfasis */
+   color: #ffffff;
+   /* Color azul claro */
+}
+
+/* Estilo del botón con ícono de casa */
+.home-button {
+   position: absolute;
+   top: 20px; /* Ajustar la distancia desde la parte superior */
+   right: 20px; /* Ajustar la distancia desde la parte derecha */
+   padding: 15px 30px;
+   background-color: #143b83;
+   border: none;
+   color: white;
+   cursor: pointer;
+   border-radius: 10px;
+   display: flex;
+   align-items: center;
+   transition: background-color 0.3s;
+   z-index: 100; /* Asegurar que esté por encima de otros elementos */
+}
+
+.home-button i {
+   margin-right: 10px; /* Espacio entre el ícono y el texto */
+}
+
+.home-button:hover {
+   background-color: #000000;
+}

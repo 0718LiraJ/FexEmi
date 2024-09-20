@@ -1,0 +1,61 @@
+/* Configuración general del body */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Dividir la pantalla en dos secciones */
+.split {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Parte izquierda con imagen de fondo */
+.left {
+    width: 75%; /* Ajuste a 60% para pantallas más grandes */
+    background: #143b83;
+    background-image: url('images/emi2.png'); /* Imagen de fondo a la izquierda */
+    background-size: cover;
+    background-position: center;
+}
+
+/* Parte derecha con fondo de color */
+.right {
+    width: 25%; /* Aumentar la sección derecha para pantallas 4K */
+    background-color: #143b83;
+}
+
+/* Contenedor de los botones */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Estilo de los botones */
+.button-container button {
+    padding: 20px 60px; /* Botones grandes */
+    background-color: #e8c629  ;
+    border: none;
+    width: 400px;
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 10px;
+    margin: 15px 0;
+    transition: background-color 0.3s;
+}
+
+.button-container button:hover {
+    background-color: #2f82d0;
+}
